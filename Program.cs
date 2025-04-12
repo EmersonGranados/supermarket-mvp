@@ -16,6 +16,7 @@ namespace Supermarket_mvp
             Application.Run(new PayModeView());
 
 
+
         }
     }
 }
