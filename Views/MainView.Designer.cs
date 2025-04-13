@@ -45,47 +45,45 @@
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(250, 450);
+            panel1.Size = new Size(300, 593);
             panel1.TabIndex = 0;
             // 
             // BtnPayMode
             // 
-            BtnPayMode.BackgroundImage = Properties.Resources.sell;
+            BtnPayMode.BackgroundImage = Properties.Resources.buy;
             BtnPayMode.BackgroundImageLayout = ImageLayout.Zoom;
-            BtnPayMode.Location = new Point(38, 12);
+            BtnPayMode.Location = new Point(3, 113);
             BtnPayMode.Name = "BtnPayMode";
-            BtnPayMode.Size = new Size(153, 56);
+            BtnPayMode.Size = new Size(294, 172);
             BtnPayMode.TabIndex = 1;
             BtnPayMode.UseVisualStyleBackColor = true;
             // 
             // pictureBox1
             // 
-            pictureBox1.Image = Properties.Resources.buy;
-            pictureBox1.Location = new Point(3, 82);
+            pictureBox1.Image = Properties.Resources.sell;
+            pictureBox1.Location = new Point(3, 3);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(244, 112);
+            pictureBox1.Size = new Size(294, 107);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox1.TabIndex = 1;
+            pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
             // BtnExit
             // 
             BtnExit.BackgroundImage = (Image)resources.GetObject("BtnExit.BackgroundImage");
             BtnExit.BackgroundImageLayout = ImageLayout.Zoom;
-            BtnExit.Dock = DockStyle.Bottom;
-            BtnExit.Location = new Point(0, 388);
+            BtnExit.Location = new Point(3, 445);
             BtnExit.Name = "BtnExit";
-            BtnExit.Size = new Size(250, 62);
+            BtnExit.Size = new Size(294, 148);
             BtnExit.TabIndex = 2;
             BtnExit.UseVisualStyleBackColor = true;
             // 
             // MainView
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(802, 593);
             Controls.Add(panel1);
-            IsMdiContainer = true;
             Name = "MainView";
             Text = "Supermarket";
             WindowState = FormWindowState.Maximized;
@@ -97,9 +95,8 @@
         #endregion
 
         private Panel panel1;
-        private PictureBox pictureBox1;
         private Button BtnPayMode;
-        private Button button1;
+        private PictureBox pictureBox1;
         private Button BtnExit;
     }
 }

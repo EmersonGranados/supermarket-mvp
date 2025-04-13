@@ -11,14 +11,11 @@ namespace Supermarket_mvp.Presenters
     internal class PayModePresenter
     {
         private IPayModeView view;
-        private IPayModeRepository repository;
-        private BindingSource payModeBindingSource;
-        private IEnumerable<PayModeModel> payModelist;
 
         public PayModePresenter(IPayModeView view, IPayModeRepository repository)
         {
             this.payModeBindingSource = new BindingSource();
-
+            
             this.view = view;
             this.repository = repository;
 
@@ -30,70 +27,21 @@ namespace Supermarket_mvp.Presenters
             this.view.CancelEvent += CancelAction;
 
             this.view.SetPayModelistBildingSource(payModeBindingSource);
-            loadAllPayModelist();
+
+            loadAllPayModelList();
 
             this.view.Show();
         }
 
-        private void loadAllPayModelist()
+        private void loadAllPayModelList()
         {
-            payModelist = repository.GetAll();
-            payModeBindingSource.DataSource = payModelist;
+            payModelList = repository.GetAll();
+            payModeBindingSource.DataSource = payModelList;
         }
 
-        private void SearchPayMode(object? sender, EventArgs e)
+        private void CancelAction(object? sender, EventArgs e)
         {
-            bool emptyValue = string.IsNullOrWhiteSpace(this.view.SearchValue);
-            if (emptyValue == false)
-            {
-                payModelist = repository.GetByValue(this.view.SearchValue);
-            }
-            else
-            {
-                payModelist = repository.GetAll();
-            }
-
-            payModeBindingSource.DataSource = payModelist;
-        }
-
-        private void AddNewPayMode(object? sender, EventArgs e)
-        {
-            view.IsEdit = false;
-        }
-
-        private void LoadSelectPayModeToEdit(object? sender, EventArgs e)
-        {
-            // Se obtiene el objeto del datagridview que se encuentra seleccionado
-            var payMode = (PayModeModel)payModeBindingSource.Current;
-
-            // Se cambia el contenido de las cajas de texto por el objeto recuperado
-            // del datagridview
-            view.PayModeId = payMode.Id.ToString();
-            view.PayModeName = payMode.Name;
-            view.PayModeObservation = payMode.Observation;
-
-            // Se establece el modo como edición
-            view.IsEdit = true;
-        }
-
-        private void DeleteSelectedPayMode(object? sender, EventArgs e)
-        {
-            try
-            {
-                // Se recupera el objeto de la fila seleccionada del dataviewgrid
-                var payMode = (PayModeModel)payModeBindingSource.Current;
-
-                // Se invoca el método Delete del repositorio pasandole el ID del Pay Mode
-                repository.Delete(payMode.Id);
-                view.IsSuccessful = true;
-                view.Message = "Pay Mode deleted successfully";
-                
-            }
-            catch (Exception ex)
-            {
-                view.IsSuccessful = false;
-                view.Message = "An error ocurred, could not delete pay mode";
-            }
+            throw new NotImplementedException();
         }
 
         private void SavePayMode(object? sender, EventArgs e)
@@ -107,7 +55,6 @@ namespace Supermarket_mvp.Presenters
 
             try
             {
-                new Common.ModelDataValidation().Validate(payMode);
                 if (view.IsEdit)
                 {
                     repository.Edit(payMode);
@@ -118,9 +65,6 @@ namespace Supermarket_mvp.Presenters
                     repository.Add(payMode);
                     view.Message = "PayMode added successfully";
                 }
-                view.IsSuccessful = true;
-                loadAllPayModelist();
-                CleanViewFields();
             }
             catch (Exception ex)
             {
@@ -131,18 +75,48 @@ namespace Supermarket_mvp.Presenters
             }
         }
 
-        private void CleanViewFields()
+        private void DeleteSelectedPayMode(object? sender, EventArgs e)
         {
-            view.PayModeId = "0";
-            view.PayModeName = "";
-            view.PayModeObservation = "";
+            throw new NotImplementedException();
         }
 
-        private void CancelAction(object? sender, EventArgs e)
+        private void LoadSelectPayModeToEdit(object? sender, EventArgs e)
         {
-            CleanViewFields();
+            // Se obtiene el objeto del datagridview que se encuentra seleccionado
+            var payMode = (PayModeModel)payModeBindingSource.Current;
+
+            // Se cambia el contenido de las cajas de texto por el objeto recuperado
+            // del datagridview
+            view.PayModeId = payMode.Id.ToString();
+            view.PayModelName = payMode.Name;
+            view.PayModeObservation = payMode.Observation;
+
+            // Se establece el modo como edición
+            view.IsEdit = true;
         }
+
+        private void AddNewPayMode(object? sender, EventArgs e)
+        {
+            view.IsEdit = false;
+        }
+
+        private void SearchPayMode(object? sender, EventArgs e)
+        {
+            bool emptyValue = string.IsNullOrWhiteSpace(this.view.SearchValue);
+            if (emptyValue == false)
+            {
+                payModelList = repository.GetByValue(this.view.SearchValue);
+            }
+            else
+            {
+                payModelList = repository.GetAll();
+            }
+            payModeBindingSource.DataSource = payModelList;
+
+        }
+
+        private IPayModeRepository repository;
+        private BindingSource payModeBindingSource;
+        private IEnumerable<PayModeModel> payModelList;
     }
-
-
 }
