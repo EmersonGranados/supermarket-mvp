@@ -275,8 +275,11 @@
             // 
             textBox1.Location = new Point(35, 29);
             textBox1.Name = "textBox1";
+            textBox1.ReadOnly = true;
             textBox1.Size = new Size(125, 27);
             textBox1.TabIndex = 2;
+            textBox1.Text = "0";
+            textBox1.TextAlign = HorizontalAlignment.Right;
             // 
             // button2
             // 
@@ -344,5 +347,8 @@
         private TextBox textBox1;
         private Button button2;
         private Button button1;
+        private Button BtnSave;
+        private Button BtnCancel;
+
     }
 }

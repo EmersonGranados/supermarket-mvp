@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainView));
             panel1 = new Panel();
             BtnPayMode = new Button();
             pictureBox1 = new PictureBox();
@@ -69,11 +70,12 @@
             // 
             // BtnExit
             // 
-            BtnExit.BackgroundImage = Properties.Resources.sell;
+            BtnExit.BackgroundImage = (Image)resources.GetObject("BtnExit.BackgroundImage");
             BtnExit.BackgroundImageLayout = ImageLayout.Zoom;
-            BtnExit.Location = new Point(38, 382);
+            BtnExit.Dock = DockStyle.Bottom;
+            BtnExit.Location = new Point(0, 388);
             BtnExit.Name = "BtnExit";
-            BtnExit.Size = new Size(153, 56);
+            BtnExit.Size = new Size(250, 62);
             BtnExit.TabIndex = 2;
             BtnExit.UseVisualStyleBackColor = true;
             // 
