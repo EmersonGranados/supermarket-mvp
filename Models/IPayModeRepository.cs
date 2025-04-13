@@ -9,15 +9,11 @@ namespace Supermarket_mvp.Models
 {
     internal interface IPayModeRepository
     {
-        
-    void Add(PayModeModel payModeModel);
+        void Add(PayModeModel payModeModel);
+        void Edit(PayModeModel payModeModel);
+        void Delete(int id);
 
-    void Edit(PayModeModel payModeModel);
-
-    void Delete(int id);
-
-     IEnumerable<PayModeModel> GetALL();
-
-    IEnumerable<PayModeModel> GetByValue(string value);
+        IEnumerable<PayModeModel> GetAll(); 
+        IEnumerable<PayModeModel> GetByValue(string value);
     }
 }

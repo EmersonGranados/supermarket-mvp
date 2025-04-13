@@ -1,4 +1,7 @@
+using Supermarket_mvp._Repositories;
+using Supermarket_mvp.Models;
 using Supermarket_mvp.Views;
+using Supermarket_mvp.Properties;
 
 namespace Supermarket_mvp
 {
@@ -14,7 +17,10 @@ namespace Supermarket_mvp
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             Application.Run(new PayModeView());
-
+            string sqlConnectionString = Settings.Default.SqlConnection;
+            IPayModeView view = new PayModeView();
+            IPayModeRepository repository = new PayModeRepository(sqlConnectionString);
+            Application.Run((Form) view);
 
 
         }
